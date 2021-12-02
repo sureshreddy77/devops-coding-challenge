@@ -39,7 +39,7 @@ DevOps requires Application team mentorship. This app displays ssh keys for syst
 
 ### Objective #3 : Deploy the app using Kubernetes
 
-- Create an app manifest within [pod.yml](./pod.yml)
+- Create an app manifest within [deployment.yml](./deployment.yml)
 - Using kubernetes deploy the app to
   - Local environments
   - **Bonus for AWS Deployment, even if conceptual**
