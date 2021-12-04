@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: python
+  name: python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: python
+    spec:
+      containers:
+      - image: suresh0077/dockertest:2.0
+        name: dockertest
+        resources: {}
+status: {}
