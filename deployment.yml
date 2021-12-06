@@ -1,24 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: python
-  name: python
+  name: my-python-app
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: python
-  strategy: {}
+      app: my-python-app
+  replicas: 4
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: python
+        app: python-app
     spec:
       containers:
-      - image: suresh0077/dockertest:2.0
-        name: dockertest
-        resources: {}
-status: {}
+      - name: python-app
+        image: python-assesment-app07:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-python-service
+spec:
+  selector:
+    app: my-python-app
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: LoadBalancer

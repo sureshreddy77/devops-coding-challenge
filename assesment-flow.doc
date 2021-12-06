@@ -1,0 +1,19 @@
+build
+docker build -t python-assesment-app07 .
+
+
+test.sh for adding test cases and linting source code for errors.
+pip install -q pylint
+pip install -q pytest
+pylint src -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero >> pylint-report.txt
+
+
+publish to aws ecr or docker repo.
+aws ecr put-image --region 'us-east-1' --repository-name 'python-assesment-app07' --image-tag latest 
+
+
+
+For monitoring app we can use prometheus node exporter on the node where we deploy app kubernetes worker node to monitor app usage.
+
+Appox time to complete the task 3hrs.
+
