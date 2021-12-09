@@ -1,0 +1,26 @@
+node {
+
+    stage("Git Clone"){
+
+        git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/sureshreddy77/devops-coding-challenge'
+    }
+
+    stage("Docker build"){
+        sh 'docker version'
+        sh 'docker build -t python-assesment-app07 .'
+        sh 'docker image list'
+        sh 'docker tag jhooq-docker-demo suresh0077/testrepository:jhooq-docker-demo'
+    }
+
+    withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+        sh 'docker login -u suresh0077 -p $PASSWORD'
+    }
+
+    stage("Push Image to Docker Hub"){
+        sh 'docker push  suresh0077/testrepository:python-assesment-app07'
+    }
+    
+    stage("kubernetes deployment"){
+        sh 'kubectl apply -f deployment.yml'
+    }
+}
